@@ -1,0 +1,65 @@
+{% extends 'products/base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<a href="{% url 'product_list' %}">← Назад к каталогу</a>
+
+<div class="product-detail">
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-detail-image">
+    {% endif %}
+    
+    <h2>{{ product.name }}</h2>
+    <p class="category">Категория: {{ product.category.name }}</p>
+    <p class="description">{{ product.description }}</p>
+    <p class="price">{{ product.price }} ₽</p>
+    
+    <button class="btn btn-accent" id="add-to-cart" data-product-id="{{ product.pk }}">
+        🛒 Добавить в корзину
+    </button>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('add-to-cart').addEventListener('click', function() {
+    const productId = this.dataset.productId;
+    const btn = this; 
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    fetch(`/cart/add/${productId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            btn.textContent = '✓ Добавлено';
+            btn.style.background = 'var(--success)';
+            btn.style.borderColor = 'var(--success)';
+            btn.style.color = 'var(--bg-primary)';
+            setTimeout(() => {
+                btn.textContent = ' Добавить в корзину';
+                btn.style.background = '';
+                btn.style.borderColor = '';
+                btn.style.color = '';
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }, 2000);
+        } else {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+        btn.disabled = false;
+        btn.style.opacity = '1';
+    });
+});
+</script>
+{% endblock %}

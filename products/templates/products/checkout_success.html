@@ -1,0 +1,18 @@
+{% extends 'products/base.html' %}
+
+{% block title %}Заказ оформлен!{% endblock %}
+
+{% block content %}
+<div class="checkout-wrapper">
+    <div class="auth-form" style="text-align: center;">
+        <div style="font-size: 60px; margin-bottom: 20px;">🎉</div>
+        <h2>Спасибо за заказ!</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 30px;">
+            Ваша оплата прошла успешно. Мы уже начали собирать ваши товары.
+        </p>
+        <a href="{% url 'product_list' %}" class="auth-submit" style="display: inline-block; text-decoration: none;">
+            Вернуться в каталог
+        </a>
+    </div>
+</div>
+{% endblock %}

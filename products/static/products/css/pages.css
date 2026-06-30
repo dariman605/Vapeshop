@@ -1,0 +1,160 @@
+/* === СТРАНИЦА ТОВАРА === */
+.product-detail {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 40px;
+    margin-top: 32px;
+    border: 1px solid var(--border);
+}
+
+.product-detail-image {
+    width: 100%;
+    max-width: 600px;
+    height: 500px;
+    object-fit: contain;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+}
+
+.product-detail h2 {
+    color: var(--text-primary);
+    font-size: 1.8em;
+    margin-bottom: 16px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.product-detail .category {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    margin-bottom: 24px;
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.product-detail .description {
+    line-height: 1.8;
+    margin-bottom: 32px;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.product-detail .price {
+    color: var(--text-primary);
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 32px;
+    letter-spacing: -1px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+    gap: 20px;
+}
+
+.cart-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info h4 {
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.cart-item-info p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-item-price {
+    color: var(--text-primary);
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-align: right;
+}
+
+.cart-delete-item {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.cart-delete-item:hover {
+    background: var(--danger);
+    color: var(--bg-primary);
+}
+
+.cart-delete-item:active {
+    transform: scale(0.95);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-state h2 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+/* === ЗАГОЛОВКИ СТРАНИЦ === */
+.page-title {
+    font-size: 1.8em;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.checkout-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 40px 0;
+}

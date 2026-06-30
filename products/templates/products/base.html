@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Магазин{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'products/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'products/css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'products/css/pages.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="blob blob-5"></div>
+    </div>
+    {% include 'products/includes/header.html' %}
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    {% include 'products/includes/footer.html' %}
+    <script src="{% static 'products/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'products/base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<div class="mt-4 mb-4">
+    <h2 class="page-title">Корзина</h2>
+    <p class="page-subtitle mb-3">{{ items|length }} товаров</p>
+</div>
+
+{% if items %}
+<div class="cart-container">
+    {% for item in items %}
+    <div class="cart-item" id="cart-item-{{ item.pk }}">
+        <div class="cart-item-info">
+            <h4>{{ item.product.name }}</h4>
+            <p class="text-muted">Категория: {{ item.product.category.name }}</p>
+        </div>
+        
+        <div class="cart-item-controls">
+            <div class="quantity-selector">
+                <button class="qty-btn" data-action="decrement" data-item-id="{{ item.pk }}">-</button>
+                <span class="qty-value" id="qty-{{ item.pk }}">{{ item.quantity }}</span>
+                <button class="qty-btn" data-action="increment" data-item-id="{{ item.pk }}">+</button>
+            </div>
+            
+            <div class="cart-item-price" id="price-{{ item.pk }}">
+                {{ item.total_price }} ₽
+            </div>
+            
+            <button class="cart-delete-item" 
+                    data-item-id="{{ item.pk }}"
+                    data-product-name="{{ item.product.name }}">
+                🗑️
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <div class="cart-total">
+        <h3 id="cart-total-price">{{ total }} ₽</h3>
+        <a href="{% url 'checkout' %}" class="btn btn-success mt-3" style="display: inline-block; text-decoration: none;">Оформить заказ</a>
+    </div>
+</div>
+{% else %}
+<div class="empty-state">
+    <h2>Корзина пуста</h2>
+    <p>Добавьте товары из каталога</p>
+    <a href="{% url 'product_list' %}" class="btn">Перейти к покупкам</a>
+</div>
+{% endif %}
+{% endblock %}

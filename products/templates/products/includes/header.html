@@ -1,0 +1,45 @@
+<header class="header">
+    <div class="header-content">
+        <h1><a href="{% url 'product_list' %}">🛍️ Мой Магазин</a></h1>
+        <div class="search-wrapper">
+            <form method="get" action="{% url 'product_list' %}" class="search-form" id="search-form">
+                <input 
+                    type="text" 
+                    name="q" 
+                    id="search-input"
+                    placeholder="Поиск товаров..." 
+                    class="search-input"
+                    value="{{ request.GET.q|default:'' }}"
+                    autocomplete="off"
+                >
+                <button type="submit" class="search-btn">🔍</button>
+            </form>
+            <div id="search-dropdown" class="search-dropdown"></div>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'product_list' %}">Каталог</a></li>
+                <li>
+                    <a href="{% url 'cart' %}" class="nav-links-cart">
+                        🛒 Корзина 
+                        {% if cart_count > 0 %}
+                            <span class="cart-badge">{{ cart_count }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+                <li class="auth-buttons">
+                   {% if user.is_authenticated %}
+                        <!-- Если пользователь вошёл -->
+                        <span class="user-greeting"> {{ user.username }}</span>
+                        <a href="{% url 'logout' %}" class="btn-auth">Выйти</a>
+                    {% else %}
+                        <!-- Если пользователь НЕ вошёл -->
+                        <a href="{% url 'login' %}" class="btn-auth">Войти</a>
+                        <a href="{% url 'register' %}" class="btn-auth btn-auth-primary">Регистрация</a>
+                    {% endif %}
+                </li>
+               </li>
+            </ul>
+        </nav>
+    </div>
+</header>
